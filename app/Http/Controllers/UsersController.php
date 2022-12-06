@@ -92,7 +92,12 @@ class UsersController extends Controller
      */
     public function update(StoreAndUpdateUserRequest $request, User $user)
     {
+     if ($request->password) {
+        $request->merge(['password' => Hash::make($request->password)]);
+        $user->update(['password'=>$request->password]);
+     }else{
         $user->update($request->validated());
+     }
        
         return back()->with('success', 'Successfully updated User details!');
     }

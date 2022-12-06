@@ -19,14 +19,18 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item" href="{{route('users.dashboard')}}">View Users Dashboard</a>
                       <a class="dropdown-item" href="{{route('users.show',['user'=>$user->id])}}">View User</a>
+                      @if(Auth::user()->admin ==1 || Auth::user()->id == $user->id)
                       <a class="dropdown-item" data-toggle='modal' data-target='#ChangePassword'>Change Password</a>
+                      @endif
+                      @if(Auth::user()->admin ==1)
                       <div class="dropdown-divider"></div>
                       <a href="#" class="dropdown-item text-danger" onclick="deleteUser()">Delete User</a> 
                       <form action="{{route('users.delete',$user->id)}}" id="delete-user-form" method='POST' style='display:none'>
                         @csrf
                         @method('DELETE')
-
                       </form>
+                      @endif
+                     
                     </div>
                   </div>
             </div>
@@ -46,14 +50,20 @@
                   <img src="{{asset('images/male.jpg')}}" style='max-width:100%;max-height:100px' class="rounded" alt="">
                 @endif
                 <hr>
+                @if(Auth::user()->admin ==1 || Auth::user()->id == $user->id)
                 <button class="btn btn-outline-primary btn-sm btn-block" data-toggle='modal' data-target='#UpdateProfileImage'>Upload New Profile Image</button>
-                @if($user->image)
+                   @if($user->image)
                 <button class="btn btn-outline-primary btn-sm btn-block" onclick="deleteProfileImage()"><i class="fas fa-trash"></i>Delete Profile Image</button>
                    <form action="{{route('users.delete.profileImage',$user->id)}}" method='POST' id="delete-profile-image-form">
                       @csrf
                       @method('Delete')
                      
                     </form>
+                  @endif
+                @else
+                <button class="btn btn-outline-primary btn-sm btn-block" onclick='NotAllowed()'>Upload New Profile Image</button>
+              
+             <button class="btn btn-outline-primary btn-sm btn-block" onclick="NotAllowed()"><i class="fas fa-trash"></i>Delete Profile Image</button>
                 @endif
                
             </div>
@@ -113,7 +123,12 @@
                       <label for="exampleInputEmail1">Email address</label>
                       <input type="email" class="form-control" id="exampleInputEmail1"  name='email' placeholder="Enter email" value='{{$user->email}}'>
                     </div>
+                    @if(Auth::user()->admin ==1 || Auth::user()->id == $user->id)
+
                     <button type="submit" class="btn btn-primary">Update Personal Details</button>
+                    @else
+                    <button  class="btn btn-primary" onclick='NotAllowed()'>Update Personal Details</button>
+                    @endif
               </form>
             </div>
          </div>
@@ -138,7 +153,13 @@
                     <label for="exampleFormControlAddress">Address</label>
                     <input type="text" class='form-control' id='exampleFormControlAddress' value='{{$user->address}}' name='address' placeholder="User Address">
                    </div>
+                   @if(Auth::user()->admin ==1 || Auth::user()->id == $user->id)
+
                      <button type="submit" class="btn btn-primary">Update Address Details</button>
+                     @else
+                     <button  class="btn btn-primary" onclick="NotAllowed()">Update Address Details</button>
+                     @endif
+
                </form>
              </div>
         </div>
@@ -215,5 +236,9 @@
                 document.querySelector('form#delete-user-form').submit();
             }
         }
+        function NotAllowed(){
+          var r = confirm("You are not allowed to make changes to this user");
+              
+         }
     </script>
 @endpush

@@ -18,7 +18,11 @@
                           Actions
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                          @if(Auth::user()->admin ==1)
                           <a class="dropdown-item" href="{{route('users.create')}}">Create New User</a>
+                          @else
+                           You're Not allowed to create User or any global actions for all users because your're Employee
+                          @endif
                         </div>
                       </div>
                 </div>

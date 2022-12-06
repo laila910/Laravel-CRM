@@ -13,8 +13,6 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                           <a class="dropdown-item" href="{{route('users.dashboard')}}">view Users Dashboard</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                       </div>
                 </div>
