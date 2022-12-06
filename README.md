@@ -13,9 +13,9 @@
 
  2. Customers: [name,email,phone,company,website,user_id,createdBy]
   >Notes:
-   1. `user_id` is User Id who will be assigned to this customer (mean who will deal with customer), Admin only can be assign any employee or user to this customer. 
-   2. by default he will be the person who create this customer.
-   3. `createdBy` is user Id who create this customer and not any user can change this value :)
+    1. `user_id` is User Id who will be assigned to this customer (mean who will deal with customer), Admin only can be assign any employee or user to this customer. 
+    2. by default he will be the person who create this customer.
+    3. `createdBy` is user Id who create this customer and not any user can change this value :)
 
  3. Actions: [status(call,visit,followUp),notes,customer_id]
   >Notes:
