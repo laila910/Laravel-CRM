@@ -34,5 +34,16 @@
 
 
 # Steps To Run This CRM:
-
+  To clone the project you must follow the following steps:
+  1. Navigate to the main page of the repository.
+  2. Above the list of files, click Code button and copy the https link.
+  3. Go to your visual studio code editor then open the terminal and write this command git clone .
+  4. Copy .env.example file to .env on the root folder. You can type copy .env.example .env if using command prompt Windows or cp .env.example .env if using terminal, Ubuntu.
+  5. Open your .env file and change the database name to `crm`, username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your configuration.
+  6. open Mysql Host and create Database with `crm` with your above configuration.
+  6. Run `composer install`
+  6. Run `php artisan key:generate`
+  7. Run `php artisan migrate`
+  8. Run `php artsian db:seed`
+  9. Run `Run php artisan serve` and start Manage Users & Customers in CRM :) with Admin Credientials with Email `lailaibrahim798@gmail.com` and Password `password`. Hope to enjoy :)
    
