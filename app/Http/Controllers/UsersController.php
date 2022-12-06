@@ -95,6 +95,14 @@ class UsersController extends Controller
      if ($request->password) {
         $request->merge(['password' => Hash::make($request->password)]);
         $user->update(['password'=>$request->password]);
+     }else if($request->image){
+        $path=public_path('images/').$user->image;
+        if(file_exists($path)){
+            @unlink($path);
+        }
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images/'), $imageName);
+        $user->update(['image'=>$imageName]);
      }else{
         $user->update($request->validated());
      }

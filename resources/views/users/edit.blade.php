@@ -126,10 +126,11 @@
                     @if(Auth::user()->admin ==1 || Auth::user()->id == $user->id)
 
                     <button type="submit" class="btn btn-primary">Update Personal Details</button>
-                    @else
-                    <button  class="btn btn-primary" onclick='NotAllowed()'>Update Personal Details</button>
-                    @endif
+                   
               </form>
+              @else
+              <a  class="btn btn-primary" onclick='NotAllowed()'>Update Personal Details</a>
+              @endif
             </div>
          </div>
       
@@ -156,11 +157,12 @@
                    @if(Auth::user()->admin ==1 || Auth::user()->id == $user->id)
 
                      <button type="submit" class="btn btn-primary">Update Address Details</button>
-                     @else
-                     <button  class="btn btn-primary" onclick="NotAllowed()">Update Address Details</button>
-                     @endif
+                   
 
                </form>
+               @else
+               <a  class="btn btn-primary" onclick="NotAllowed()">Update Address Details</a>
+               @endif
              </div>
         </div>
     </div>
